@@ -60,6 +60,6 @@ import { _, match } from "https://deno.land/x/pattern_match@$VERSION/mod.ts";
 
 ## License
 
-Copyright © 2022-present [TomokiMiyauci](https://github.com/TomokiMiyauci).
+Copyright © 2022-present [Tomoki Miyauchi](https://github.com/TomokiMiyauci).
 
 Released under the [MIT](./LICENSE) license
