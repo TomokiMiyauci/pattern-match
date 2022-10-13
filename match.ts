@@ -1,3 +1,6 @@
+// Copyright 2022-latest Tomoki Miyauchi. All rights reserved. MIT license.
+// This module is browser compatible.
+
 import { MatchConstructor, Pattern } from "./types.ts";
 import { _ } from "./constants.ts";
 
