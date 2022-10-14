@@ -7,7 +7,7 @@ export const makeOptions = (version: string): BuildOptions => ({
   entryPoints: ["./mod.ts"],
   outDir: "./npm",
   package: {
-    name: "pattern-matching",
+    name: "@miyauci/pattern-match",
     version,
     description: "Type-safe functional style pattern matching",
     keywords: [
@@ -25,11 +25,10 @@ export const makeOptions = (version: string): BuildOptions => ({
       type: "git",
       url: "git+https://github.com/TomokiMiyauci/pattern-match.git",
     },
-    bugs: {
-      url: "https://github.com/TomokiMiyauci/pattern-match/issues",
-    },
+    bugs: { url: "https://github.com/TomokiMiyauci/pattern-match/issues" },
     sideEffects: false,
     type: "module",
+    publishConfig: { access: "public" },
   },
   packageManager: "pnpm",
 });
