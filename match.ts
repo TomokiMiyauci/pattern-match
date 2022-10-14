@@ -29,7 +29,7 @@ import { _ } from "./constants.ts";
  * })
  * ```
  */
-export const match: MatchConstructor = <T extends string | number, U>(
+export const match: MatchConstructor = <T extends PropertyKey, U>(
   value: T,
   pattern: Pattern<T, U>,
 ) => {

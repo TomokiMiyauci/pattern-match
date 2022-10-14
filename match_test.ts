@@ -159,4 +159,34 @@ describe("match", () => {
     assertSpyCalls(fn, 1);
     assertSpyCallArg(fn, 0, 0, "");
   });
+
+  it("should accept symbol type", () => {
+    const value = Symbol("abc") as symbol;
+
+    const result = match(value, {
+      [value]: () => {
+        return 0;
+      },
+      [match._]: () => {
+        return 1;
+      },
+    });
+
+    assertEquals(result, 0);
+  });
+
+  it("should accept mixed type", () => {
+    const value = Symbol("abc") as symbol | string | number;
+
+    const result = match(value, {
+      "": () => 0,
+      0: () => 1,
+      [Symbol("0")]: () => 2,
+      [match._]: () => {
+        return 3;
+      },
+    });
+
+    assertEquals(result, 3);
+  });
 });
