@@ -16,10 +16,20 @@ export type Pattern<T extends PropertyKey, U> = {
   [k in T]: (value: k) => U;
 };
 
+/** Pattern matching definition with context. */
+export type ContextualPattern<T extends PropertyKey, U, C> = {
+  [k in T]: (context: C) => U;
+};
+
 /** Pattern matching definition with fallback. */
 export type CollectivePattern<T extends PropertyKey, U> =
   & Pattern<T, U>
   & { [k in _]: (value: T) => U };
+
+/** Pattern matching definition with fallback and context. */
+export type ContextualCollectivePattern<T extends PropertyKey, U, C> =
+  & ContextualPattern<T, U, C>
+  & { [k in _]: (context: C) => U };
 
 /** Pattern matching operation. */
 export interface MatchConstructor {
@@ -27,6 +37,12 @@ export interface MatchConstructor {
     value: T,
     pattern: IsCollective<T> extends true ? CollectivePattern<T, U>
       : Pattern<T, U>,
+  ): U;
+  <T extends PropertyKey, U, C>(
+    value: T,
+    pattern: IsCollective<T> extends true ? ContextualCollectivePattern<T, U, C>
+      : ContextualPattern<T, U, C>,
+    context: C,
   ): U;
 
   /** Pattern patching wildcard.

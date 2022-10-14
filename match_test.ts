@@ -189,4 +189,20 @@ describe("match", () => {
 
     assertEquals(result, 3);
   });
+
+  it("should pass context", () => {
+    const fn = spy();
+    const value = "abc" as string;
+
+    match(value, {
+      "": (value) => {
+        fn(value);
+      },
+      [match._]: (value) => {
+        fn(value);
+      },
+    }, "def");
+
+    assertSpyCallArg(fn, 0, 0, "def");
+  });
 });

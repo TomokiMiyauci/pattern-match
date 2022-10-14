@@ -32,11 +32,12 @@ import { _ } from "./constants.ts";
 export const match: MatchConstructor = <T extends PropertyKey, U>(
   value: T,
   pattern: Pattern<T, U>,
+  context = value,
 ) => {
-  if (value in pattern) return pattern[value](value);
+  if (value in pattern) return pattern[value](context);
 
   // deno-lint-ignore no-explicit-any
-  return (pattern as any)[_](value);
+  return (pattern as any)[_](context);
 };
 
 /** Pattern matching wildcard. */
