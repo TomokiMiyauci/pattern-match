@@ -6,7 +6,8 @@ import { _ } from "./constants.ts";
 type _ = typeof _;
 
 /** Whether the type is collective type or not. */
-export type IsCollective<T extends string> = string extends T ? true
+export type IsCollective<T extends string | number> = string extends T ? true
+  : number extends T ? true
   : false;
 
 /** Pattern matching definition. */
@@ -21,7 +22,7 @@ export type CollectivePattern<T extends PropertyKey, U> =
 
 /** Pattern matching operation. */
 export interface MatchConstructor {
-  <T extends string, U>(
+  <T extends string | number, U>(
     value: T,
     pattern: IsCollective<T> extends true ? CollectivePattern<T, U>
       : Pattern<T, U>,

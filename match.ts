@@ -29,15 +29,11 @@ import { _ } from "./constants.ts";
  * })
  * ```
  */
-export const match: MatchConstructor = <T extends string, U>(
+export const match: MatchConstructor = <T extends string | number, U>(
   value: T,
   pattern: Pattern<T, U>,
 ) => {
-  const entries = Object.entries(pattern) as [string, (value: T) => U][];
-
-  for (const [key, handler] of entries) {
-    if (Object.is(key, value)) return handler(value);
-  }
+  if (value in pattern) return pattern[value](value);
 
   // deno-lint-ignore no-explicit-any
   return (pattern as any)[_](value);
